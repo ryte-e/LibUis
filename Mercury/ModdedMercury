@@ -16,7 +16,7 @@ local function createButton()
     button.Size = UDim2.new(0, 100, 0, 50)
     button.Position = UDim2.new(1, -110, 0, 10) -- Sağ üst köşe
     button.BackgroundColor3 = Color3.fromRGB(150, 150, 150) -- Daha koyu gri
-    button.Text = "Delete"
+    button.Text = "Toggle Ui"
     button.TextSize = 20
     button.Font = Enum.Font.SourceSansBold
     button.Parent = screenGui
