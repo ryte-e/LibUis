@@ -1,4 +1,68 @@
 
+
+local player = game:GetService("Players").LocalPlayer
+local playerGui = player:FindFirstChildOfClass("PlayerGui")
+
+local function createButton()
+    if playerGui:FindFirstChild("DeleteButtonGui") then
+        playerGui:FindFirstChild("DeleteButtonGui"):Destroy()
+    end
+
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "DeleteButtonGui"
+    screenGui.Parent = playerGui
+
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 100, 0, 50)
+    button.Position = UDim2.new(1, -110, 0, 10) -- Sağ üst köşe
+    button.BackgroundColor3 = Color3.fromRGB(150, 150, 150) -- Daha koyu gri
+    button.Text = "Delete"
+    button.TextSize = 20
+    button.Font = Enum.Font.SourceSansBold
+    button.Parent = screenGui
+    button.AutoButtonColor = true
+    button.BorderSizePixel = 0
+
+    local uicorner = Instance.new("UICorner")
+    uicorner.CornerRadius = UDim.new(0, 10)
+    uicorner.Parent = button
+
+    local dragging, offset
+
+    button.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            offset = button.Position - UDim2.new(0, input.Position.X, 0, input.Position.Y)
+        end
+    end)
+
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if dragging and input.UserInputType == Enum.UserInputType.Touch then
+            button.Position = UDim2.new(0, input.Position.X, 0, input.Position.Y) + offset
+        end
+    end)
+
+    game:GetService("UserInputService").InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch then
+            dragging = false
+        end
+    end)
+
+    button.MouseButton1Click:Connect(function()
+        keypress(0x2E) -- "Delete" tuşunun virtual key kodu (0x2E)
+        keyrelease(0x2E)
+    end)
+end
+
+createButton()
+
+player.CharacterRemoving:Connect(function()
+    task.wait(1) -- Yeni karakter spawn olana kadar beklet
+    createButton()
+end)
+
+
+
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
