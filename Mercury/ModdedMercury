@@ -73,7 +73,43 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Legacy = {
+ 
+               SummerBliss = {
+	Main = Color3.fromRGB(255, 248, 220),
+	Secondary = Color3.fromRGB(135, 206, 250),
+	Tertiary = Color3.fromRGB(255, 105, 180),
+
+	StrongText = Color3.fromRGB(0, 0, 0),
+	WeakText = Color3.fromRGB(120, 120, 120)
+},
+
+        CoralReef = {
+	Main = Color3.fromRGB(255, 127, 80),
+	Secondary = Color3.fromRGB(255, 228, 196),
+	Tertiary = Color3.fromRGB(0, 191, 255),
+
+	StrongText = Color3.fromRGB(0, 0, 0),
+	WeakText = Color3.fromRGB(100, 100, 100)
+},
+
+        OceanDream = {
+	Main = Color3.fromRGB(25, 25, 112),
+	Secondary = Color3.fromRGB(65, 105, 225),
+	Tertiary = Color3.fromRGB(173, 216, 230),
+
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(180, 180, 200)
+},
+
+        SunsetGlow = {
+	Main = Color3.fromRGB(255, 160, 122),
+	Secondary = Color3.fromRGB(255, 218, 185),
+	Tertiary = Color3.fromRGB(255, 182, 193),
+
+	StrongText = Color3.fromRGB(50, 20, 20),
+	WeakText = Color3.fromRGB(120, 80, 80)
+},
+Legacy = {
 			Main = Color3.fromHSV(262/360, 60/255, 34/255),
 			Secondary = Color3.fromHSV(240/360, 40/255, 63/255),
 			Tertiary = Color3.fromHSV(260/360, 60/255, 148/255),
@@ -81,7 +117,7 @@ local Library = {
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		Serika = {
+Serika = {
 			Main = Color3.fromRGB(50, 52, 55),
 			Secondary = Color3.fromRGB(80, 82, 85),
 			Tertiary = Color3.fromRGB(226, 183, 20),
@@ -89,7 +125,7 @@ local Library = {
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		Dark = {
+Dark = {
 			Main = Color3.fromRGB(30, 30, 35),
 			Secondary = Color3.fromRGB(50, 50, 55),
 			Tertiary = Color3.fromRGB(70, 130, 180),
@@ -97,7 +133,7 @@ local Library = {
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		Rust = {
+Rust = {
 			Main = Color3.fromRGB(37, 35, 33),
 			Secondary = Color3.fromRGB(65, 63, 63),
 			Tertiary = Color3.fromRGB(237, 94, 38),
@@ -105,7 +141,7 @@ local Library = {
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		Aqua = {
+Aqua = {
 			Main = Color3.fromRGB(19, 21, 21),
 			Secondary = Color3.fromRGB(65, 63, 63),
 			Tertiary = Color3.fromRGB(51, 153, 137),
