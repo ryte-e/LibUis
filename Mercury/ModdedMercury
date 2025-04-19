@@ -9,14 +9,6 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Legacy = {
-			Main = Color3.fromHSV(262/360, 60/255, 34/255),
-			Secondary = Color3.fromHSV(240/360, 40/255, 63/255),
-			Tertiary = Color3.fromHSV(260/360, 60/255, 148/255),
-
-			StrongText = Color3.fromHSV(0, 0, 1),		
-			WeakText = Color3.fromHSV(0, 0, 172/255)
-		},
 	Obsidian = {
 		Main = Color3.fromRGB(10, 10, 10),
 		Secondary = Color3.fromRGB(30, 30, 30),
@@ -24,7 +16,6 @@ local Library = {
 		StrongText = Color3.fromRGB(255, 255, 255),
 		WeakText = Color3.fromRGB(140, 140, 140)
 	},
-
 	DeepSpace = {
 		Main = Color3.fromRGB(10, 10, 30),
 		Secondary = Color3.fromRGB(35, 35, 60),
@@ -32,15 +23,13 @@ local Library = {
 		StrongText = Color3.fromRGB(220, 220, 255),
 		WeakText = Color3.fromRGB(100, 100, 120)
 	},
-
 	MidnightRose = {
 		Main = Color3.fromRGB(50, 0, 50),
 		Secondary = Color3.fromRGB(80, 0, 80),
 		Tertiary = Color3.fromRGB(255, 20, 147),
 		StrongText = Color3.fromRGB(255, 255, 255),
 		WeakText = Color3.fromRGB(180, 150, 180)
-	},
-
+        },
 	ForestNight = {
 		Main = Color3.fromRGB(20, 30, 20),
 		Secondary = Color3.fromRGB(40, 60, 40),
@@ -48,7 +37,6 @@ local Library = {
 		StrongText = Color3.fromRGB(200, 255, 200),
 		WeakText = Color3.fromRGB(120, 160, 120)
 	},
-
 	CrimsonNight = {
 		Main = Color3.fromRGB(40, 0, 0),
 		Secondary = Color3.fromRGB(80, 0, 0),
@@ -56,7 +44,6 @@ local Library = {
 		StrongText = Color3.fromRGB(255, 230, 230),
 		WeakText = Color3.fromRGB(160, 100, 100)
 	},
-
 	Steel = {
 		Main = Color3.fromRGB(50, 50, 50),
 		Secondary = Color3.fromRGB(80, 80, 80),
@@ -64,7 +51,6 @@ local Library = {
 		StrongText = Color3.fromRGB(255, 255, 255),
 		WeakText = Color3.fromRGB(150, 150, 150)
 	},
-
 	Ruby = {
 		Main = Color3.fromRGB(90, 0, 20),
 		Secondary = Color3.fromRGB(139, 0, 0),
@@ -72,7 +58,6 @@ local Library = {
 		StrongText = Color3.fromRGB(255, 220, 230),
 		WeakText = Color3.fromRGB(170, 110, 120)
 	},
-
 	Cyber = {
 		Main = Color3.fromRGB(15, 15, 20),
 		Secondary = Color3.fromRGB(30, 30, 40),
