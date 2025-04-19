@@ -31,7 +31,7 @@ ObsidianViolet = {
 
 	StrongText = Color3.fromRGB(230, 220, 255),
 	WeakText = Color3.fromRGB(150, 140, 180)
-}
+},
 RoyalInk = {
 	Main = Color3.fromRGB(18, 20, 30),
 	Secondary = Color3.fromRGB(40, 45, 70),
@@ -87,7 +87,7 @@ AbyssCrimson = {
 
 	StrongText = Color3.fromRGB(255, 200, 200),
 	WeakText = Color3.fromRGB(120, 80, 80)
-}
+},
 		Vaporwave = {},
 		OperaGX = {},
 		VisualStudio = {}
