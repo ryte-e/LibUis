@@ -434,7 +434,7 @@ end
 function Library:create(options)
 
 	local settings = {
-		Theme = "Dark"
+		Theme = "PureBlack"
 	}
 
 	if readfile and writefile and isfile then
@@ -467,7 +467,7 @@ function Library:create(options)
 		options.Link = options.Link:sub(1, -2)
 	end
 
-	if options.Theme.PureBlack then
+	if options.Theme.Lighten then
 		self.darken, self.lighten = self.lighten, self.darken
 	end
 
