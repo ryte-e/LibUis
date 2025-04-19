@@ -89,89 +89,94 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Midnight = {
-	Main = Color3.fromHSV(240/360, 0.6, 0.15),
-	Secondary = Color3.fromHSV(240/360, 0.4, 0.3),
-	Tertiary = Color3.fromHSV(260/360, 0.5, 0.6),
+		Charcoal = {
+	Main = Color3.fromRGB(20, 20, 20),
+	Secondary = Color3.fromRGB(40, 40, 40),
+	Tertiary = Color3.fromRGB(80, 80, 80),
 
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
-},
-Ashen = {
-	Main = Color3.fromHSV(0/360, 0.05, 0.2),
-	Secondary = Color3.fromHSV(0/360, 0.05, 0.35),
-	Tertiary = Color3.fromHSV(30/360, 0.3, 0.6),
-
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
-},
-DeepForest = {
-	Main = Color3.fromHSV(120/360, 0.4, 0.15),
-	Secondary = Color3.fromHSV(120/360, 0.3, 0.3),
-	Tertiary = Color3.fromHSV(150/360, 0.6, 0.5),
-
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
-},
-Obsidian = {
-	Main = Color3.fromHSV(270/360, 0.4, 0.1),
-	Secondary = Color3.fromHSV(270/360, 0.3, 0.25),
-	Tertiary = Color3.fromHSV(300/360, 0.5, 0.6),
-
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
-},
-	        Eclipse = {
-		Main = Color3.fromRGB(15, 15, 20),
-		Secondary = Color3.fromRGB(35, 35, 45),
-		Tertiary = Color3.fromRGB(100, 0, 150),
-
-		StrongText = Color3.fromRGB(255, 255, 255),
-		WeakText = Color3.fromRGB(160, 160, 200)
-         	},
-CrimsonVoid = {
-	Main = Color3.fromHSV(0/360, 0.7, 0.12),
-	Secondary = Color3.fromHSV(0/360, 0.5, 0.25),
-	Tertiary = Color3.fromHSV(355/360, 0.8, 0.5),
-
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(150, 150, 150)
 },
 
-Storm = {
-	Main = Color3.fromHSV(210/360, 0.5, 0.18),
-	Secondary = Color3.fromHSV(210/360, 0.4, 0.3),
-	Tertiary = Color3.fromHSV(200/360, 0.6, 0.6),
+SlateGray = {
+	Main = Color3.fromRGB(45, 45, 50),
+	Secondary = Color3.fromRGB(70, 70, 75),
+	Tertiary = Color3.fromRGB(110, 110, 115),
 
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(170, 170, 170)
 },
 
-Grimwood = {
-	Main = Color3.fromHSV(100/360, 0.5, 0.15),
-	Secondary = Color3.fromHSV(100/360, 0.4, 0.3),
-	Tertiary = Color3.fromHSV(90/360, 0.6, 0.5),
+PureBlack = {
+	Main = Color3.fromRGB(10, 10, 10),
+	Secondary = Color3.fromRGB(25, 25, 25),
+	Tertiary = Color3.fromRGB(60, 60, 60),
 
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(120, 120, 120)
 },
 
-IndigoMist = {
-	Main = Color3.fromHSV(250/360, 0.6, 0.14),
-	Secondary = Color3.fromHSV(250/360, 0.5, 0.28),
-	Tertiary = Color3.fromHSV(260/360, 0.7, 0.55),
+StormAsh = {
+	Main = Color3.fromRGB(30, 30, 35),
+	Secondary = Color3.fromRGB(50, 50, 55),
+	Tertiary = Color3.fromRGB(100, 100, 110),
 
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(160, 160, 160)
 },
 
-Slate = {
-	Main = Color3.fromHSV(210/360, 0.1, 0.2),
-	Secondary = Color3.fromHSV(210/360, 0.1, 0.35),
-	Tertiary = Color3.fromHSV(220/360, 0.3, 0.6),
+IronFog = {
+	Main = Color3.fromRGB(60, 60, 65),
+	Secondary = Color3.fromRGB(90, 90, 95),
+	Tertiary = Color3.fromRGB(130, 130, 135),
 
-	StrongText = Color3.fromHSV(0, 0, 1),
-	WeakText = Color3.fromHSV(0, 0, 172/255)
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(180, 180, 180)
+},
+
+FrostedGlass = {
+	Main = Color3.fromRGB(240, 240, 240),
+	Secondary = Color3.fromRGB(210, 210, 210),
+	Tertiary = Color3.fromRGB(180, 180, 180),
+
+	StrongText = Color3.fromRGB(0, 0, 0),
+	WeakText = Color3.fromRGB(80, 80, 80)
+},
+
+Granite = {
+	Main = Color3.fromRGB(70, 70, 75),
+	Secondary = Color3.fromRGB(100, 100, 105),
+	Tertiary = Color3.fromRGB(150, 150, 155),
+
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(190, 190, 190)
+},
+
+ShadowSteel = {
+	Main = Color3.fromRGB(15, 15, 20),
+	Secondary = Color3.fromRGB(35, 35, 40),
+	Tertiary = Color3.fromRGB(70, 70, 80),
+
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(140, 140, 140)
+},
+
+FoggyGray = {
+	Main = Color3.fromRGB(85, 85, 90),
+	Secondary = Color3.fromRGB(120, 120, 125),
+	Tertiary = Color3.fromRGB(170, 170, 175),
+
+	StrongText = Color3.fromRGB(0, 0, 0),
+	WeakText = Color3.fromRGB(90, 90, 90)
+},
+
+Smoky = {
+	Main = Color3.fromRGB(25, 25, 25),
+	Secondary = Color3.fromRGB(55, 55, 55),
+	Tertiary = Color3.fromRGB(100, 100, 100),
+
+	StrongText = Color3.fromRGB(255, 255, 255),
+	WeakText = Color3.fromRGB(160, 160, 160)
 },
 		Vaporwave = {},
 		OperaGX = {},
