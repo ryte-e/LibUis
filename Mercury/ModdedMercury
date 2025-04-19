@@ -1,3 +1,83 @@
+local player = game:GetService("Players").LocalPlayer
+local playerGui = player:FindFirstChildOfClass("PlayerGui")
+
+local function createMercuryStyleButton()
+    if playerGui:FindFirstChild("DeleteButtonGui") then
+        playerGui:FindFirstChild("DeleteButtonGui"):Destroy()
+    end
+
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "DeleteButtonGui"
+    screenGui.ResetOnSpawn = false
+    screenGui.IgnoreGuiInset = true
+    screenGui.Parent = playerGui
+
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 120, 0, 40)
+    button.Position = UDim2.new(1, -130, 0, 20)
+    button.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+    button.Text = "Toggle Ui"
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.TextSize = 18
+    button.Font = Enum.Font.SourceSansBold
+    button.BorderSizePixel = 0
+    button.AutoButtonColor = false
+    button.Parent = screenGui
+
+    local uicorner = Instance.new("UICorner", button)
+    uicorner.CornerRadius = UDim.new(0, 8)
+
+    local stroke = Instance.new("UIStroke", button)
+    stroke.Color = Color3.fromRGB(70, 130, 180)
+    stroke.Thickness = 1
+
+    local dragging = false
+    local offset = Vector2.new()
+
+    button.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
+            offset = Vector2.new(input.Position.X - button.AbsolutePosition.X, input.Position.Y - button.AbsolutePosition.Y)
+        end
+    end)
+
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseMovement) then
+            local newPos = UDim2.new(0, input.Position.X - offset.X, 0, input.Position.Y - offset.Y)
+            button.Position = newPos
+        end
+    end)
+
+    game:GetService("UserInputService").InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+        end
+    end)
+
+    button.MouseEnter:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(70, 70, 80)
+    end)
+
+    button.MouseLeave:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
+    end)
+
+    button.MouseButton1Click:Connect(function()
+        pcall(function()
+            keypress(0x2E) -- Delete key
+            keyrelease(0x2E)
+        end)
+    end)
+end
+
+createMercuryStyleButton()
+
+player.CharacterRemoving:Connect(function()
+    task.wait(1)
+    createMercuryStyleButton()
+end)
+
+
 
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
