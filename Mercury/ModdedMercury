@@ -49,6 +49,50 @@ Obsidian = {
 		StrongText = Color3.fromRGB(255, 255, 255),
 		WeakText = Color3.fromRGB(160, 160, 200)
          	},
+CrimsonVoid = {
+	Main = Color3.fromHSV(0/360, 0.7, 0.12),
+	Secondary = Color3.fromHSV(0/360, 0.5, 0.25),
+	Tertiary = Color3.fromHSV(355/360, 0.8, 0.5),
+
+	StrongText = Color3.fromHSV(0, 0, 1),
+	WeakText = Color3.fromHSV(0, 0, 172/255)
+},
+
+Storm = {
+	Main = Color3.fromHSV(210/360, 0.5, 0.18),
+	Secondary = Color3.fromHSV(210/360, 0.4, 0.3),
+	Tertiary = Color3.fromHSV(200/360, 0.6, 0.6),
+
+	StrongText = Color3.fromHSV(0, 0, 1),
+	WeakText = Color3.fromHSV(0, 0, 172/255)
+},
+
+Grimwood = {
+	Main = Color3.fromHSV(100/360, 0.5, 0.15),
+	Secondary = Color3.fromHSV(100/360, 0.4, 0.3),
+	Tertiary = Color3.fromHSV(90/360, 0.6, 0.5),
+
+	StrongText = Color3.fromHSV(0, 0, 1),
+	WeakText = Color3.fromHSV(0, 0, 172/255)
+},
+
+IndigoMist = {
+	Main = Color3.fromHSV(250/360, 0.6, 0.14),
+	Secondary = Color3.fromHSV(250/360, 0.5, 0.28),
+	Tertiary = Color3.fromHSV(260/360, 0.7, 0.55),
+
+	StrongText = Color3.fromHSV(0, 0, 1),
+	WeakText = Color3.fromHSV(0, 0, 172/255)
+},
+
+Slate = {
+	Main = Color3.fromHSV(210/360, 0.1, 0.2),
+	Secondary = Color3.fromHSV(210/360, 0.1, 0.35),
+	Tertiary = Color3.fromHSV(220/360, 0.3, 0.6),
+
+	StrongText = Color3.fromHSV(0, 0, 1),
+	WeakText = Color3.fromHSV(0, 0, 172/255)
+},
 		Vaporwave = {},
 		OperaGX = {},
 		VisualStudio = {}
