@@ -17,7 +17,6 @@ local Library = {
 	StrongText = Color3.fromHSV(0, 0, 1),
 	WeakText = Color3.fromHSV(0, 0, 172/255)
 },
-
 Ashen = {
 	Main = Color3.fromHSV(0/360, 0.05, 0.2),
 	Secondary = Color3.fromHSV(0/360, 0.05, 0.35),
@@ -26,7 +25,6 @@ Ashen = {
 	StrongText = Color3.fromHSV(0, 0, 1),
 	WeakText = Color3.fromHSV(0, 0, 172/255)
 },
-
 DeepForest = {
 	Main = Color3.fromHSV(120/360, 0.4, 0.15),
 	Secondary = Color3.fromHSV(120/360, 0.3, 0.3),
@@ -35,7 +33,6 @@ DeepForest = {
 	StrongText = Color3.fromHSV(0, 0, 1),
 	WeakText = Color3.fromHSV(0, 0, 172/255)
 },
-
 Obsidian = {
 	Main = Color3.fromHSV(270/360, 0.4, 0.1),
 	Secondary = Color3.fromHSV(270/360, 0.3, 0.25),
@@ -43,7 +40,7 @@ Obsidian = {
 
 	StrongText = Color3.fromHSV(0, 0, 1),
 	WeakText = Color3.fromHSV(0, 0, 172/255)
-}
+},
 	        Eclipse = {
 		Main = Color3.fromRGB(15, 15, 20),
 		Secondary = Color3.fromRGB(35, 35, 45),
