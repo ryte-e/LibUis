@@ -17,37 +17,68 @@ local Library = {
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		Serika = {
-			Main = Color3.fromRGB(50, 52, 55),
-			Secondary = Color3.fromRGB(80, 82, 85),
-			Tertiary = Color3.fromRGB(226, 183, 20),
+	Obsidian = {
+		Main = Color3.fromRGB(10, 10, 10),
+		Secondary = Color3.fromRGB(30, 30, 30),
+		Tertiary = Color3.fromRGB(80, 80, 80),
+		StrongText = Color3.fromRGB(255, 255, 255),
+		WeakText = Color3.fromRGB(140, 140, 140)
+	},
 
-			StrongText = Color3.fromHSV(0, 0, 1),		
-			WeakText = Color3.fromHSV(0, 0, 172/255)
-		},
-		Dark = {
-			Main = Color3.fromRGB(30, 30, 35),
-			Secondary = Color3.fromRGB(50, 50, 55),
-			Tertiary = Color3.fromRGB(70, 130, 180),
+	DeepSpace = {
+		Main = Color3.fromRGB(10, 10, 30),
+		Secondary = Color3.fromRGB(35, 35, 60),
+		Tertiary = Color3.fromRGB(100, 100, 255),
+		StrongText = Color3.fromRGB(220, 220, 255),
+		WeakText = Color3.fromRGB(100, 100, 120)
+	},
 
-			StrongText = Color3.fromHSV(0, 0, 1),		
-			WeakText = Color3.fromHSV(0, 0, 172/255)
-		},
-		Rust = {
-			Main = Color3.fromRGB(37, 35, 33),
-			Secondary = Color3.fromRGB(65, 63, 63),
-			Tertiary = Color3.fromRGB(237, 94, 38),
+	MidnightRose = {
+		Main = Color3.fromRGB(50, 0, 50),
+		Secondary = Color3.fromRGB(80, 0, 80),
+		Tertiary = Color3.fromRGB(255, 20, 147),
+		StrongText = Color3.fromRGB(255, 255, 255),
+		WeakText = Color3.fromRGB(180, 150, 180)
+	},
 
-			StrongText = Color3.fromHSV(0, 0, 1),		
-			WeakText = Color3.fromHSV(0, 0, 172/255)
-		},
-		Aqua = {
-			Main = Color3.fromRGB(19, 21, 21),
-			Secondary = Color3.fromRGB(65, 63, 63),
-			Tertiary = Color3.fromRGB(51, 153, 137),
+	ForestNight = {
+		Main = Color3.fromRGB(20, 30, 20),
+		Secondary = Color3.fromRGB(40, 60, 40),
+		Tertiary = Color3.fromRGB(34, 139, 34),
+		StrongText = Color3.fromRGB(200, 255, 200),
+		WeakText = Color3.fromRGB(120, 160, 120)
+	},
 
-			StrongText = Color3.fromHSV(0, 0, 1),        
-			WeakText = Color3.fromHSV(0, 0, 172/255)
+	CrimsonNight = {
+		Main = Color3.fromRGB(40, 0, 0),
+		Secondary = Color3.fromRGB(80, 0, 0),
+		Tertiary = Color3.fromRGB(178, 34, 34),
+		StrongText = Color3.fromRGB(255, 230, 230),
+		WeakText = Color3.fromRGB(160, 100, 100)
+	},
+
+	Steel = {
+		Main = Color3.fromRGB(50, 50, 50),
+		Secondary = Color3.fromRGB(80, 80, 80),
+		Tertiary = Color3.fromRGB(169, 169, 169),
+		StrongText = Color3.fromRGB(255, 255, 255),
+		WeakText = Color3.fromRGB(150, 150, 150)
+	},
+
+	Ruby = {
+		Main = Color3.fromRGB(90, 0, 20),
+		Secondary = Color3.fromRGB(139, 0, 0),
+		Tertiary = Color3.fromRGB(255, 0, 60),
+		StrongText = Color3.fromRGB(255, 220, 230),
+		WeakText = Color3.fromRGB(170, 110, 120)
+	},
+
+	Cyber = {
+		Main = Color3.fromRGB(15, 15, 20),
+		Secondary = Color3.fromRGB(30, 30, 40),
+		Tertiary = Color3.fromRGB(0, 255, 150),
+		StrongText = Color3.fromRGB(200, 255, 230),
+		WeakText = Color3.fromRGB(100, 150, 130)
 		},
 		Vaporwave = {},
 		OperaGX = {},
