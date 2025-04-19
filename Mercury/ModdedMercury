@@ -290,7 +290,7 @@ function Library:object(class, properties)
 				BackgroundColor3 = {"Main", 30},
 				TextColor3 = {"WeakText"}
 			},
-			TextSize = 15,
+			TextSize = 16,
 			Text = text,
 			Position = UDim2.new(0.5, 0, 0, -8),
 			TextXAlignment = Enum.TextXAlignment.Center,
@@ -449,10 +449,10 @@ function Library:create(options)
 	end
 
 	options = self:set_defaults({
-		Name = "Mercury",
+		Name = "Mercury Modded",
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
-		Link = "https://github.com/deeeity/mercury-lib"
+		Link = "https://discord.gg/qXdkJrdT8Y"
 	}, options)
 
 	if getgenv and getgenv().MercuryUI then
