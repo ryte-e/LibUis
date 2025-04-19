@@ -432,10 +432,10 @@ function Library:object(class, properties)
 	function methods:tooltip(text)
 		local tooltipContainer = methods:object("TextLabel", {
 			Theme = {
-				BackgroundColor3 = {"Main", 10},
+				BackgroundColor3 = {"Main", 5},
 				TextColor3 = {"WeakText"}
 			},
-			TextSize = 16,
+			TextSize = 10,
 			Text = text,
 			Position = UDim2.new(0.5, 0, 0, -8),
 			TextXAlignment = Enum.TextXAlignment.Center,
