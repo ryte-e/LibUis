@@ -1,4 +1,3 @@
-
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -26,7 +25,6 @@ Sunset = {
 	StrongText = Color3.fromRGB(30, 30, 30),
 	WeakText = Color3.fromRGB(100, 100, 100)
 },
-
 Lavender = {
 	Main = Color3.fromRGB(150, 123, 182),
 	Secondary = Color3.fromRGB(178, 153, 204),
@@ -35,7 +33,6 @@ Lavender = {
 	StrongText = Color3.fromRGB(255, 255, 255),
 	WeakText = Color3.fromRGB(190, 190, 190)
 },
-
 Mint = {
 	Main = Color3.fromRGB(102, 205, 170),
 	Secondary = Color3.fromRGB(152, 251, 152),
@@ -44,7 +41,6 @@ Mint = {
 	StrongText = Color3.fromRGB(20, 20, 20),
 	WeakText = Color3.fromRGB(100, 100, 100)
 },
-
 PeachCream = {
 	Main = Color3.fromRGB(255, 229, 180),
 	Secondary = Color3.fromRGB(255, 204, 153),
@@ -53,7 +49,6 @@ PeachCream = {
 	StrongText = Color3.fromRGB(40, 40, 40),
 	WeakText = Color3.fromRGB(120, 120, 120)
 },
-
 Midnight = {
 	Main = Color3.fromRGB(25, 25, 40),
 	Secondary = Color3.fromRGB(45, 45, 70),
@@ -62,7 +57,6 @@ Midnight = {
 	StrongText = Color3.fromRGB(230, 230, 255),
 	WeakText = Color3.fromRGB(140, 140, 170)
 },
-
 RoseGold = {
 	Main = Color3.fromRGB(183, 110, 121),
 	Secondary = Color3.fromRGB(217, 154, 162),
@@ -71,7 +65,6 @@ RoseGold = {
 	StrongText = Color3.fromRGB(30, 30, 30),
 	WeakText = Color3.fromRGB(120, 120, 120)
 },
-
 NeonWave = {
 	Main = Color3.fromRGB(20, 20, 30),
 	Secondary = Color3.fromRGB(50, 0, 100),
@@ -80,7 +73,6 @@ NeonWave = {
 	StrongText = Color3.fromRGB(255, 255, 255),
 	WeakText = Color3.fromRGB(160, 160, 160)
 },
-
 SkyPastel = {
 	Main = Color3.fromRGB(174, 214, 241),
 	Secondary = Color3.fromRGB(200, 230, 250),
@@ -89,7 +81,6 @@ SkyPastel = {
 	StrongText = Color3.fromRGB(0, 0, 30),
 	WeakText = Color3.fromRGB(90, 90, 90)
 },
-
 Berry = {
 	Main = Color3.fromRGB(120, 50, 90),
 	Secondary = Color3.fromRGB(180, 70, 120),
@@ -98,7 +89,6 @@ Berry = {
 	StrongText = Color3.fromRGB(255, 255, 255),
 	WeakText = Color3.fromRGB(190, 190, 190)
 },
-
 ClassicCream = {
 	Main = Color3.fromRGB(250, 240, 230),
 	Secondary = Color3.fromRGB(235, 225, 210),
