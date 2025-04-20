@@ -31,28 +31,33 @@ local function createMercuryStyleButton()
     stroke.Color = Color3.fromRGB(70, 130, 180)
     stroke.Thickness = 1
 
+    
     local dragging = false
     local offset = Vector2.new()
+    local inputType = nil
 
     button.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
             dragging = true
+            inputType = input.UserInputType
             offset = Vector2.new(input.Position.X - button.AbsolutePosition.X, input.Position.Y - button.AbsolutePosition.Y)
         end
     end)
 
     game:GetService("UserInputService").InputChanged:Connect(function(input)
-        if dragging and input.UserInputType == Enum.UserInputType.Touch then
+        if dragging and input.UserInputType == inputType then
             local newPos = UDim2.new(0, input.Position.X - offset.X, 0, input.Position.Y - offset.Y)
             button.Position = newPos
         end
     end)
 
     game:GetService("UserInputService").InputEnded:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        if input.UserInputType == inputType then
             dragging = false
+            inputType = nil
         end
     end)
+
 
     button.MouseEnter:Connect(function()
         button.BackgroundColor3 = Color3.fromRGB(70, 70, 80)
