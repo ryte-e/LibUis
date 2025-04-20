@@ -6,6 +6,8 @@ local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
+local isMobile = UserInputService.TouchEnabled
+
 local HTTPService = game:GetService("HttpService")
 
 local Library = {
@@ -316,8 +318,9 @@ function Library:object(class, properties)
 
 		local hovered = false
 
-		methods.MouseEnter:connect(function()
-			hovered = true
+		methodsif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			wait(0.2)
 			if hovered then
 				tooltipContainer:tween{BackgroundTransparency = 0.2, TextTransparency = 0.2}
@@ -325,8 +328,9 @@ function Library:object(class, properties)
 			end
 		end)
 
-		methods.MouseLeave:connect(function()
-			hovered = false
+		methodsif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			tooltipContainer:tween{BackgroundTransparency = 1, TextTransparency = 1}
 			tooltipArrow:tween{ImageTransparency = 1}
 		end)
@@ -552,8 +556,9 @@ function Library:create(options)
 				end)
 
 				local Leave
-				Leave = core.MouseLeave:connect(function()
-					Input:disconnect()
+				Leave = coreif not isMobile then .MouseLeave:connect(function()
+					 end
+Input:disconnect()
 					Leave:disconnect()
 				end)
 			end)
@@ -590,12 +595,14 @@ function Library:create(options)
 		AnchorPoint = Vector2.new(1)
 	})
 
-	closeButton.MouseEnter:connect(function()
-		closeButton:tween{ImageColor3 = Color3.fromRGB(255, 124, 142)}
+	closeButtonif not isMobile then .MouseEnter:connect(function()
+		 end
+closeButton:tween{ImageColor3 = Color3.fromRGB(255, 124, 142)}
 	end)
 
-	closeButton.MouseLeave:connect(function()
-		closeButton:tween{ImageColor3 = Library.CurrentTheme.StrongText}
+	closeButtonif not isMobile then .MouseLeave:connect(function()
+		 end
+closeButton:tween{ImageColor3 = Library.CurrentTheme.StrongText}
 	end)
 
 	local function closeUI()
@@ -611,8 +618,11 @@ function Library:create(options)
 		getgenv().MercuryUI = closeUI
 	end
 
-	closeButton.MouseButton1Click:connect(function()
-		closeUI()
+	closeButtonif not isMobile then .MouseButton1Click:connect(function()
+		 end; if isMobile then 
+    -- Mobile tap handler here
+end
+closeUI()
 	end)
 
 	local urlBar = core:object("Frame", {
@@ -727,13 +737,15 @@ function Library:create(options)
 		local down = false
 		local hovered = false
 
-		homeButton.MouseEnter:connect(function()
-			hovered = true
+		homeButtonif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			homeButton:tween{BackgroundTransparency = ((selectedTab == homeButton) and 0.15) or 0.3}
 		end)
 
-		homeButton.MouseLeave:connect(function()
-			hovered = false
+		homeButtonif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			homeButton:tween{BackgroundTransparency = ((selectedTab == homeButton) and 0.15) or 1}
 		end)
 
@@ -1145,13 +1157,15 @@ function Library:tab(options)
 		local down = false
 		local hovered = false
 
-		tabButton.MouseEnter:connect(function()
-			hovered = true
+		tabButtonif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			tabButton:tween{BackgroundTransparency = ((selectedTab == tabButton) and 0.15) or 0.3}
 		end)
 
-		tabButton.MouseLeave:connect(function()
-			hovered = false
+		tabButtonif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			tabButton:tween{BackgroundTransparency = ((selectedTab == tabButton) and 0.15) or 1}
 		end)
 
@@ -1181,16 +1195,21 @@ function Library:tab(options)
 			Library.UrlLabel.Text = Library.Url .. "/" .. options.Name:lower()
 		end)
 
-		quickAccessButton.MouseEnter:connect(function()
-			quickAccessButton:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
+		quickAccessButtonif not isMobile then .MouseEnter:connect(function()
+			 end
+quickAccessButton:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
 		end)
 
-		quickAccessButton.MouseLeave:connect(function()
-			quickAccessButton:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
+		quickAccessButtonif not isMobile then .MouseLeave:connect(function()
+			 end
+quickAccessButton:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 		end)
 
-		quickAccessButton.MouseButton1Click:connect(function()
-			if not tabButton.Visible then
+		quickAccessButtonif not isMobile then .MouseButton1Click:connect(function()
+			 end; if isMobile then 
+    -- Mobile tap handler here
+end
+if not tabButton.Visible then
 				tabButton.Parent = self.navigation.AbsoluteObject
 				tabButton.Size = UDim2.new(0, 50, tabButton.Size.Y.Scale, tabButton.Size.Y.Offset)
 				tabButton.Visible = true
@@ -1241,8 +1260,11 @@ function Library:tab(options)
 		Theme = {ImageColor3 = "StrongText"}
 	})
 
-	tabButtonClose.MouseButton1Click:connect(function()
-		tabButton:fade(true, Library.CurrentTheme.Main, 0.1)
+	tabButtonCloseif not isMobile then .MouseButton1Click:connect(function()
+		 end; if isMobile then 
+    -- Mobile tap handler here
+end
+tabButton:fade(true, Library.CurrentTheme.Main, 0.1)
 		tabButton:tween({Size = UDim2.new(0, 50, tabButton.Size.Y.Scale, tabButton.Size.Y.Offset), Length = 0.1}, function()
 			tabButton.Visible = false
 			tab.Visible = false
@@ -1377,13 +1399,15 @@ function Library:toggle(options)
 		local hovered = false
 		local down = false
 
-		toggleContainer.MouseEnter:connect(function()
-			hovered = true
+		toggleContainerif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			toggleContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
 		end)
 
-		toggleContainer.MouseLeave:connect(function()
-			hovered = false
+		toggleContainerif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			if not down then
 				toggleContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 			end
@@ -1399,8 +1423,11 @@ function Library:toggle(options)
 			end
 		end)
 
-		toggleContainer.MouseButton1Click:connect(function()
-			toggle()
+		toggleContainerif not isMobile then .MouseButton1Click:connect(function()
+			 end; if isMobile then 
+    -- Mobile tap handler here
+end
+toggle()
 		end)
 	end
 	self:_resize_tab()
@@ -1546,13 +1573,15 @@ function Library:dropdown(options)
 			local hovered = false
 			local down = false
 
-			newItem.MouseEnter:connect(function()
-				hovered = true
+			newItemif not isMobile then .MouseEnter:connect(function()
+				 end
+hovered = true
 				newItem:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
 			end)
 
-			newItem.MouseLeave:connect(function()
-				hovered = false
+			newItemif not isMobile then .MouseLeave:connect(function()
+				 end
+hovered = false
 				if not down then
 					newItem:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 25)}
 				end
@@ -1568,8 +1597,11 @@ function Library:dropdown(options)
 				end
 			end)
 
-			newItem.MouseButton1Click:connect(function()
-				toggle()
+			newItemif not isMobile then .MouseButton1Click:connect(function()
+				 end; if isMobile then 
+    -- Mobile tap handler here
+end
+toggle()
 				selectedText.Text = newItem.Text
 				selectedText:tween{Size = UDim2.fromOffset(selectedText.TextBounds.X + 20, 20), Length = 0.05}
 				options.Callback(value)
@@ -1602,13 +1634,15 @@ function Library:dropdown(options)
 			end
 		end
 
-		dropdownContainer.MouseEnter:connect(function()
-			hovered = true
+		dropdownContainerif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			dropdownContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
 		end)
 
-		dropdownContainer.MouseLeave:connect(function()
-			hovered = false
+		dropdownContainerif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			if not down then
 				dropdownContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 			end
@@ -1624,8 +1658,11 @@ function Library:dropdown(options)
 			end
 		end)
 
-		dropdownContainer.MouseButton1Click:connect(function()
-			toggle()
+		dropdownContainerif not isMobile then .MouseButton1Click:connect(function()
+			 end; if isMobile then 
+    -- Mobile tap handler here
+end
+toggle()
 		end)
 	end
 	self:_resize_tab()
@@ -1700,13 +1737,15 @@ function Library:dropdown(options)
 				local hovered = false
 				local down = false
 
-				newItem.MouseEnter:connect(function()
-					hovered = true
+				newItemif not isMobile then .MouseEnter:connect(function()
+					 end
+hovered = true
 					newItem:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
 				end)
 
-				newItem.MouseLeave:connect(function()
-					hovered = false
+				newItemif not isMobile then .MouseLeave:connect(function()
+					 end
+hovered = false
 					if not down then
 						newItem:tween{BackgroundColor3 = Library:lighten(Library.CurrentTheme.Secondary, 25)}
 					end
@@ -1722,8 +1761,11 @@ function Library:dropdown(options)
 					end
 				end)
 
-				newItem.MouseButton1Click:connect(function()
-					toggle()
+				newItemif not isMobile then .MouseButton1Click:connect(function()
+					 end; if isMobile then 
+    -- Mobile tap handler here
+end
+toggle()
 					selectedText.Text = newItem.Text
 					selectedText:tween{Size = UDim2.fromOffset(selectedText.TextBounds.X + 20, 20), Length = 0.05}
 					options.Callback(value)
@@ -1838,13 +1880,15 @@ function Library:button(options)
 		local hovered = false
 		local down = false
 
-		buttonContainer.MouseEnter:connect(function()
-			hovered = true
+		buttonContainerif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			buttonContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
 		end)
 
-		buttonContainer.MouseLeave:connect(function()
-			hovered = false
+		buttonContainerif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			if not down then
 				buttonContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 			end
@@ -1860,8 +1904,11 @@ function Library:button(options)
 			end
 		end)
 
-		buttonContainer.MouseButton1Click:connect(function()
-			options.Callback()
+		buttonContainerif not isMobile then .MouseButton1Click:connect(function()
+			 end; if isMobile then 
+    -- Mobile tap handler here
+end
+options.Callback()
 		end)
 	end
 	self:_resize_tab()
@@ -1928,13 +1975,15 @@ function Library:color_picker(options)
 		local hovered = false
 		local down = false
 
-		buttonContainer.MouseEnter:connect(function()
-			hovered = true
+		buttonContainerif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			buttonContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
 		end)
 
-		buttonContainer.MouseLeave:connect(function()
-			hovered = false
+		buttonContainerif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			if not down then
 				buttonContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 			end
@@ -1950,8 +1999,11 @@ function Library:color_picker(options)
 			end
 		end)
 
-		buttonContainer.MouseButton1Click:connect(function()
-			if Library._colorPickerExists then return end
+		buttonContainerif not isMobile then .MouseButton1Click:connect(function()
+			 end; if isMobile then 
+    -- Mobile tap handler here
+end
+if Library._colorPickerExists then return end
 			Library._colorPickerExists = true
 			local hue, sat, val;
 			local updatePicker, updateHue;
@@ -2043,13 +2095,15 @@ function Library:color_picker(options)
 						local hovered = false
 						local down = false
 
-						button.MouseEnter:connect(function()
-							hovered = true
+						buttonif not isMobile then .MouseEnter:connect(function()
+							 end
+hovered = true
 							button:tween{BackgroundTransparency = 0, TextColor3 = self:lighten(Library.CurrentTheme.StrongText, 15)}
 						end)
 
-						button.MouseLeave:connect(function()
-							hovered = false
+						buttonif not isMobile then .MouseLeave:connect(function()
+							 end
+hovered = false
 							if not down then
 								button:tween{BackgroundTransparency = 1, TextColor3 = self:darken(Library.CurrentTheme.Tertiary, 10)}
 							end
@@ -2068,8 +2122,11 @@ function Library:color_picker(options)
 							end
 						end)
 
-						button.MouseButton1Click:connect(function()
-							fadeOut()
+						buttonif not isMobile then .MouseButton1Click:connect(function()
+							 end; if isMobile then 
+    -- Mobile tap handler here
+end
+fadeOut()
 							icon:tween({ImageColor3 = selectedColor})
 							options.Callback(selectedColor)
 							task.delay(0.35, function()
@@ -2631,13 +2688,15 @@ function Library:color_picker(options)
 						local down = false
 						local hovered = false
 
-						pickBtn.MouseEnter:connect(function()
-							hovered = true
+						pickBtnif not isMobile then .MouseEnter:connect(function()
+							 end
+hovered = true
 							pickBtn:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Tertiary, 10)}
 						end)
 
-						pickBtn.MouseLeave:connect(function()
-							hovered = false
+						pickBtnif not isMobile then .MouseLeave:connect(function()
+							 end
+hovered = false
 							if not down then
 								pickBtn:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
 							end
@@ -2653,8 +2712,11 @@ function Library:color_picker(options)
 							end
 						end)
 
-						pickBtn.MouseButton1Click:connect(function()
-							fadeOut()
+						pickBtnif not isMobile then .MouseButton1Click:connect(function()
+							 end; if isMobile then 
+    -- Mobile tap handler here
+end
+fadeOut()
 							icon:tween({ImageColor3 = selectedColor})
 							options.Callback(selectedColor)
 							task.delay(0.35, function()
@@ -2806,8 +2868,11 @@ function Library:credit(options)
 				BackgroundTransparency = 1
 			}):round(100)
 
-			githubContainer.MouseButton1Click:connect(function()
-				setclipboard(options.Github)
+			githubContainerif not isMobile then .MouseButton1Click:connect(function()
+				 end; if isMobile then 
+    -- Mobile tap handler here
+end
+setclipboard(options.Github)
 			end)
 		end
 	
@@ -2864,8 +2929,11 @@ function Library:credit(options)
 				ScaleType = Enum.ScaleType.Crop
 			})
 
-			discordContainer.MouseButton1Click:connect(function()
-				setclipboard(options.Discord)
+			discordContainerif not isMobile then .MouseButton1Click:connect(function()
+				 end; if isMobile then 
+    -- Mobile tap handler here
+end
+setclipboard(options.Discord)
 			end)
 		end
 
@@ -2883,8 +2951,11 @@ function Library:credit(options)
 				BackgroundTransparency = 1
 			})
 
-			v3rmillionContainer.MouseButton1Click:connect(function()
-				setclipboard(options.V3rmillion)
+			v3rmillionContainerif not isMobile then .MouseButton1Click:connect(function()
+				 end; if isMobile then 
+    -- Mobile tap handler here
+end
+setclipboard(options.V3rmillion)
 			end)
 		end
 	end
@@ -3002,8 +3073,11 @@ function Library:_theme_selector()
 				BackgroundColor3 = themeColors.WeakText
 			}):round(100)
 
-			theme.MouseButton1Click:connect(function()
-				Library:change_theme(Library.Themes[themeName])
+			themeif not isMobile then .MouseButton1Click:connect(function()
+				 end; if isMobile then 
+    -- Mobile tap handler here
+end
+Library:change_theme(Library.Themes[themeName])
 				updateSettings("Theme", themeName)
 			end)
 		end
@@ -3067,13 +3141,15 @@ function Library:keybind(options)
 		local down = false
 		local listening = false
 
-		keybindContainer.MouseEnter:connect(function()
-			hovered = true
+		keybindContainerif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			keybindContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
 		end)
 
-		keybindContainer.MouseLeave:connect(function()
-			hovered = false
+		keybindContainerif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			if not down then
 				keybindContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 			end
@@ -3106,8 +3182,11 @@ function Library:keybind(options)
 			end
 		end)
 
-		keybindContainer.MouseButton1Click:connect(function()
-			if not listening then listening = true; keybindDisplay.Text = "..." end
+		keybindContainerif not isMobile then .MouseButton1Click:connect(function()
+			 end; if isMobile then 
+    -- Mobile tap handler here
+end
+if not listening then listening = true; keybindDisplay.Text = "..." end
 		end)
 	end
 	self:_resize_tab()
@@ -3236,13 +3315,15 @@ function Library:prompt(options)
 			local hovered = false
 			local down = false
 
-			button.MouseEnter:connect(function()
-				hovered = true
+			buttonif not isMobile then .MouseEnter:connect(function()
+				 end
+hovered = true
 				button:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Tertiary, 10)}
 			end)
 
-			button.MouseLeave:connect(function()
-				hovered = false
+			buttonif not isMobile then .MouseLeave:connect(function()
+				 end
+hovered = false
 				if not down then
 					button:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
 				end
@@ -3258,8 +3339,11 @@ function Library:prompt(options)
 				end
 			end)
 
-			button.MouseButton1Click:connect(function()
-				promptContainer:tween({BackgroundTransparency = 1, Length = 0.1})
+			buttonif not isMobile then .MouseButton1Click:connect(function()
+				 end; if isMobile then 
+    -- Mobile tap handler here
+end
+promptContainer:tween({BackgroundTransparency = 1, Length = 0.1})
 				promptTitle:tween({TextTransparency = 1, Length = 0.1})
 				_promptContainerStroke:tween({Transparency = 1, Length = 0.1})
 				promptText:tween({TextTransparency = 1, Length = 0.1})
@@ -3362,13 +3446,15 @@ function Library:slider(options)
 		local hovered = false
 		local down = false
 
-		sliderContainer.MouseEnter:connect(function()
-			hovered = true
+		sliderContainerif not isMobile then .MouseEnter:connect(function()
+			 end
+hovered = true
 			sliderContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
 		end)
 
-		sliderContainer.MouseLeave:connect(function()
-			hovered = false
+		sliderContainerif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			if not down then
 				sliderContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 			end
@@ -3479,12 +3565,14 @@ function Library:textbox(options)
 		local down = false
 		local focused = false
 
-		textboxContainer.MouseEnter:connect(function()
-			textboxContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
+		textboxContainerif not isMobile then .MouseEnter:connect(function()
+			 end
+textboxContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
 		end)
 
-		textboxContainer.MouseLeave:connect(function()
-			hovered = false
+		textboxContainerif not isMobile then .MouseLeave:connect(function()
+			 end
+hovered = false
 			if not down then
 				textboxContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 			end
