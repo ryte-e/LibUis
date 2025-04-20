@@ -7,7 +7,6 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local isMobile = UserInputService.TouchEnabled
-
 local HTTPService = game:GetService("HttpService")
 
 local Library = {
