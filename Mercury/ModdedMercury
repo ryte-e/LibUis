@@ -1,87 +1,3 @@
-local player = game:GetService("Players").LocalPlayer
-local playerGui = player:FindFirstChildOfClass("PlayerGui")
-
-local function createMercuryStyleButton()
-    if playerGui:FindFirstChild("DeleteButtonGui") then
-        playerGui:FindFirstChild("DeleteButtonGui"):Destroy()
-    end
-
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "DeleteButtonGui"
-    screenGui.ResetOnSpawn = false
-    screenGui.IgnoreGuiInset = true
-    screenGui.Parent = playerGui
-
-    local button = Instance.new("TextButton")
-    button.Size = UDim2.new(0, 120, 0, 40)
-    button.Position = UDim2.new(1, -130, 0, 20)
-    button.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
-    button.Text = "Toggle Ui"
-    button.TextColor3 = Color3.fromRGB(255, 255, 255)
-    button.TextSize = 18
-    button.Font = Enum.Font.SourceSansBold
-    button.BorderSizePixel = 0
-    button.AutoButtonColor = false
-    button.Parent = screenGui
-
-    local uicorner = Instance.new("UICorner", button)
-    uicorner.CornerRadius = UDim.new(0, 8)
-
-    local stroke = Instance.new("UIStroke", button)
-    stroke.Color = Color3.fromRGB(70, 130, 180)
-    stroke.Thickness = 1
-
-    
-    local dragging = false
-    local offset = Vector2.new()
-    local inputType = nil
-
-    button.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = true
-            inputType = input.UserInputType
-            offset = Vector2.new(input.Position.X - button.AbsolutePosition.X, input.Position.Y - button.AbsolutePosition.Y)
-        end
-    end)
-
-    game:GetService("UserInputService").InputChanged:Connect(function(input)
-        if dragging and input.UserInputType == inputType then
-            local newPos = UDim2.new(0, input.Position.X - offset.X, 0, input.Position.Y - offset.Y)
-            button.Position = newPos
-        end
-    end)
-
-    game:GetService("UserInputService").InputEnded:Connect(function(input)
-        if input.UserInputType == inputType then
-            dragging = false
-            inputType = nil
-        end
-    end)
-
-
-    button.MouseEnter:Connect(function()
-        button.BackgroundColor3 = Color3.fromRGB(70, 70, 80)
-    end)
-
-    button.MouseLeave:Connect(function()
-        button.BackgroundColor3 = Color3.fromRGB(50, 50, 55)
-    end)
-
-    button.MouseButton1Click:Connect(function()
-        pcall(function()
-            keypress(0x2E) -- Delete key
-            keyrelease(0x2E)
-        end)
-    end)
-end
-
-createMercuryStyleButton()
-
-player.CharacterRemoving:Connect(function()
-    task.wait(1)
-    createMercuryStyleButton()
-end)
-
 
 
 local TweenService = game:GetService("TweenService")
@@ -220,7 +136,7 @@ end
 
 function Library:change_theme(toTheme)
 	Library.CurrentTheme = toTheme
-	local c = self:lighten(toTheme.Tertiary, 30)
+	local c = self:lighten(toTheme.Tertiary, 20)
 	Library.DisplayName.Text = "Welcome, <font color='rgb(" ..  math.floor(c.R*255) .. "," .. math.floor(c.G*255) .. "," .. math.floor(c.B*255) .. ")'> <b>" .. LocalPlayer.DisplayName .. "</b> </font>"
 	for color, objects in next, Library.ThemeObjects do
 		local themeColor = Library.CurrentTheme[color]
@@ -373,7 +289,7 @@ function Library:object(class, properties)
 	function methods:tooltip(text)
 		local tooltipContainer = methods:object("TextLabel", {
 			Theme = {
-				BackgroundColor3 = {"Main", 30},
+				BackgroundColor3 = {"Main", 10},
 				TextColor3 = {"WeakText"}
 			},
 			TextSize = 16,
@@ -389,7 +305,7 @@ function Library:object(class, properties)
 
 		local tooltipArrow = tooltipContainer:object("ImageLabel", {
 			Image = "http://www.roblox.com/asset/?id=4292970642",
-			Theme = {ImageColor3 = {"Main", 30}},
+			Theme = {ImageColor3 = {"Main", 10}},
 			AnchorPoint = Vector2.new(0.5, 0),
 			Rotation = 180,
 			Position = UDim2.fromScale(0.5, 1),
@@ -519,7 +435,7 @@ end
 function Library:create(options)
 
 	local settings = {
-		Theme = "PureBlack"
+		Theme = "Dark"
 	}
 
 	if readfile and writefile and isfile then
@@ -535,10 +451,10 @@ function Library:create(options)
 	end
 
 	options = self:set_defaults({
-		Name = "Mercury Modded",
+		Name = "Mercury",
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
-		Link = "https://discord.gg/qXdkJrdT8Y"
+		Link = "https://github.com/deeeity/mercury-lib"
 	}, options)
 
 	if getgenv and getgenv().MercuryUI then
@@ -552,7 +468,7 @@ function Library:create(options)
 		options.Link = options.Link:sub(1, -2)
 	end
 
-	if options.Theme.Lighten then
+	if options.Theme.Light then
 		self.darken, self.lighten = self.lighten, self.darken
 	end
 
@@ -600,9 +516,9 @@ function Library:create(options)
 
 			Event:connect(function()
 				local Input = core.InputBegan:connect(function(Key)
-					if Key.UserInputType == Enum.UserInputType.Touch then
+					if Key.UserInputType == Enum.UserInputType.MouseButton1 then
 						local ObjectPosition = Vector2.new(Mouse.X - core.AbsolutePosition.X, Mouse.Y - core.AbsolutePosition.Y)
-						while RunService.RenderStepped:wait() and UserInputService:IsMouseButtonPressed(Enum.UserInputType.Touch) do
+						while RunService.RenderStepped:wait() and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
 
 							if Library.LockDragging then
 								local FrameX, FrameY = math.clamp(Mouse.X - ObjectPosition.X, 0, gui.AbsoluteSize.X - core.AbsoluteSize.X), math.clamp(Mouse.Y - ObjectPosition.Y, 0, gui.AbsoluteSize.Y - core.AbsoluteSize.Y)
@@ -695,8 +611,7 @@ function Library:create(options)
 		getgenv().MercuryUI = closeUI
 	end
 
-	closeButton.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+	closeButton.MouseButton1Click:connect(function()
 		closeUI()
 	end)
 
@@ -828,14 +743,14 @@ function Library:create(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				down = false
 				homeButton:tween{BackgroundTransparency = ((selectedTab == homeButton) and 0.15) or (hovered and 0.3) or 1}
 			end
 
 		end)
 
-		homeButton.InputBegan:Connect(function()
+		homeButton.MouseButton1Click:Connect(function()
 			for _, tabInfo in next, tabs do
 				local page = tabInfo[1]
 				local button = tabInfo[2]
@@ -1023,7 +938,6 @@ function Library:create(options)
 
 	rawset(mt, "creditsContainer", creditsTab.container)
 
-	creditsTab:credit{Name = "Ryte", Description = "UI Library Modder", Discord = "ryte.e", V3rmillion = "notfound"}
 	creditsTab:credit{Name = "Abstract", Description = "UI Library Developer", Discord = "Abstract#8007", V3rmillion = "AbstractPoo"}
 	creditsTab:credit{Name = "Deity", Description = "UI Library Developer", Discord = "Deity#0228", V3rmillion = "0xDEITY"}
 	creditsTab:credit{Name = "Repository", Description = "UI Library Repository", Github="https://github.com/deeeity/mercury-lib/blob/master/src.lua"}
@@ -1106,7 +1020,7 @@ function Library:notification(options)
 		ImageTransparency = 1
 	})
 
-	exit.InputBegan:Connect(function()
+	exit.MouseButton1Click:Connect(function()
 		fadeOut()
 	end)
 
@@ -1247,14 +1161,14 @@ function Library:tab(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				down = false
 				tabButton:tween{BackgroundTransparency = ((selectedTab == tabButton) and 0.15) or (hovered and 0.3) or 1}
 			end
 
 		end)
 
-		tabButton.InputBegan:Connect(function()
+		tabButton.MouseButton1Click:Connect(function()
 			for _, tabInfo in next, self.Tabs do
 				local page = tabInfo[1]
 				local button = tabInfo[2]
@@ -1275,8 +1189,7 @@ function Library:tab(options)
 			quickAccessButton:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
 		end)
 
-		quickAccessButton.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+		quickAccessButton.MouseButton1Click:connect(function()
 			if not tabButton.Visible then
 				tabButton.Parent = self.navigation.AbsoluteObject
 				tabButton.Size = UDim2.new(0, 50, tabButton.Size.Y.Scale, tabButton.Size.Y.Offset)
@@ -1328,8 +1241,7 @@ function Library:tab(options)
 		Theme = {ImageColor3 = "StrongText"}
 	})
 
-	tabButtonClose.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+	tabButtonClose.MouseButton1Click:connect(function()
 		tabButton:fade(true, Library.CurrentTheme.Main, 0.1)
 		tabButton:tween({Size = UDim2.new(0, 50, tabButton.Size.Y.Scale, tabButton.Size.Y.Offset), Length = 0.1}, function()
 			tabButton.Visible = false
@@ -1482,13 +1394,12 @@ function Library:toggle(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				toggleContainer:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Secondary)) or Library.CurrentTheme.Secondary}
 			end
 		end)
 
-		toggleContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+		toggleContainer.MouseButton1Click:connect(function()
 			toggle()
 		end)
 	end
@@ -1652,13 +1563,12 @@ function Library:dropdown(options)
 			end)
 
 			UserInputService.InputEnded:connect(function(key)
-				if key.UserInputType == Enum.UserInputType.Touch then
+				if key.UserInputType == Enum.UserInputType.MouseButton1 then
 					newItem:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Tertiary, 5)) or self:lighten(Library.CurrentTheme.Secondary, 25)}
 				end
 			end)
 
-			newItem.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+			newItem.MouseButton1Click:connect(function()
 				toggle()
 				selectedText.Text = newItem.Text
 				selectedText:tween{Size = UDim2.fromOffset(selectedText.TextBounds.X + 20, 20), Length = 0.05}
@@ -1709,13 +1619,12 @@ function Library:dropdown(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				dropdownContainer:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Secondary)) or Library.CurrentTheme.Secondary}
 			end
 		end)
 
-		dropdownContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+		dropdownContainer.MouseButton1Click:connect(function()
 			toggle()
 		end)
 	end
@@ -1808,13 +1717,12 @@ function Library:dropdown(options)
 				end)
 
 				UserInputService.InputEnded:connect(function(key)
-					if key.UserInputType == Enum.UserInputType.Touch then
+					if key.UserInputType == Enum.UserInputType.MouseButton1 then
 						newItem:tween{BackgroundColor3 = (hovered and Library:lighten(Library.CurrentTheme.Tertiary, 5)) or Library:lighten(Library.CurrentTheme.Secondary, 25)}
 					end
 				end)
 
-				newItem.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+				newItem.MouseButton1Click:connect(function()
 					toggle()
 					selectedText.Text = newItem.Text
 					selectedText:tween{Size = UDim2.fromOffset(selectedText.TextBounds.X + 20, 20), Length = 0.05}
@@ -1947,13 +1855,12 @@ function Library:button(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				buttonContainer:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Secondary)) or Library.CurrentTheme.Secondary}
 			end
 		end)
 
-		buttonContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+		buttonContainer.MouseButton1Click:connect(function()
 			options.Callback()
 		end)
 	end
@@ -2038,13 +1945,12 @@ function Library:color_picker(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				buttonContainer:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Secondary)) or Library.CurrentTheme.Secondary}
 			end
 		end)
 
-		buttonContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+		buttonContainer.MouseButton1Click:connect(function()
 			if Library._colorPickerExists then return end
 			Library._colorPickerExists = true
 			local hue, sat, val;
@@ -2154,7 +2060,7 @@ function Library:color_picker(options)
 						end)
 
 						UserInputService.InputEnded:connect(function(key)
-							if key.UserInputType == Enum.UserInputType.Touch then
+							if key.UserInputType == Enum.UserInputType.MouseButton1 then
 								button:tween{BackgroundTransparency = (hovered and 0) or 1}
 								if hovered then
 									button:tween{BackgroundColor3 = Library.CurrentTheme.Tertiary}
@@ -2162,8 +2068,7 @@ function Library:color_picker(options)
 							end
 						end)
 
-						button.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+						button.MouseButton1Click:connect(function()
 							fadeOut()
 							icon:tween({ImageColor3 = selectedColor})
 							options.Callback(selectedColor)
@@ -2309,7 +2214,7 @@ function Library:color_picker(options)
 						end)
 
 						UserInputService.InputEnded:Connect(function(key)
-							if key.UserInputType == Enum.UserInputType.Touch then
+							if key.UserInputType == Enum.UserInputType.MouseButton1 then
 								if down then
 									down = false
 								end
@@ -2344,7 +2249,7 @@ function Library:color_picker(options)
 						end)
 
 						UserInputService.InputEnded:Connect(function(key)
-							if key.UserInputType == Enum.UserInputType.Touch then
+							if key.UserInputType == Enum.UserInputType.MouseButton1 then
 								if down then
 									down = false
 								end
@@ -2678,7 +2583,7 @@ function Library:color_picker(options)
 						end)
 
 						UserInputService.InputEnded:Connect(function(key)
-							if key.UserInputType == Enum.UserInputType.Touch then
+							if key.UserInputType == Enum.UserInputType.MouseButton1 then
 								if down then
 									down = false
 								end
@@ -2713,7 +2618,7 @@ function Library:color_picker(options)
 						end)
 
 						UserInputService.InputEnded:Connect(function(key)
-							if key.UserInputType == Enum.UserInputType.Touch then
+							if key.UserInputType == Enum.UserInputType.MouseButton1 then
 								if down then
 									down = false
 								end
@@ -2743,13 +2648,12 @@ function Library:color_picker(options)
 						end)
 
 						UserInputService.InputEnded:connect(function(key)
-							if key.UserInputType == Enum.UserInputType.Touch then
+							if key.UserInputType == Enum.UserInputType.MouseButton1 then
 								pickBtn:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Tertiary)) or Library.CurrentTheme.Tertiary}
 							end
 						end)
 
-						pickBtn.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+						pickBtn.MouseButton1Click:connect(function()
 							fadeOut()
 							icon:tween({ImageColor3 = selectedColor})
 							options.Callback(selectedColor)
@@ -2902,8 +2806,7 @@ function Library:credit(options)
 				BackgroundTransparency = 1
 			}):round(100)
 
-			githubContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+			githubContainer.MouseButton1Click:connect(function()
 				setclipboard(options.Github)
 			end)
 		end
@@ -2961,8 +2864,7 @@ function Library:credit(options)
 				ScaleType = Enum.ScaleType.Crop
 			})
 
-			discordContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+			discordContainer.MouseButton1Click:connect(function()
 				setclipboard(options.Discord)
 			end)
 		end
@@ -2981,8 +2883,7 @@ function Library:credit(options)
 				BackgroundTransparency = 1
 			})
 
-			v3rmillionContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+			v3rmillionContainer.MouseButton1Click:connect(function()
 				setclipboard(options.V3rmillion)
 			end)
 		end
@@ -3101,8 +3002,7 @@ function Library:_theme_selector()
 				BackgroundColor3 = themeColors.WeakText
 			}):round(100)
 
-			theme.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+			theme.MouseButton1Click:connect(function()
 				Library:change_theme(Library.Themes[themeName])
 				updateSettings("Theme", themeName)
 			end)
@@ -3184,7 +3084,7 @@ function Library:keybind(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				keybindContainer:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Secondary)) or Library.CurrentTheme.Secondary}
 			end
 		end)
@@ -3206,8 +3106,7 @@ function Library:keybind(options)
 			end
 		end)
 
-		keybindContainer.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+		keybindContainer.MouseButton1Click:connect(function()
 			if not listening then listening = true; keybindDisplay.Text = "..." end
 		end)
 	end
@@ -3354,13 +3253,12 @@ function Library:prompt(options)
 			end)
 
 			UserInputService.InputEnded:connect(function(key)
-				if key.UserInputType == Enum.UserInputType.Touch then
+				if key.UserInputType == Enum.UserInputType.MouseButton1 then
 					button:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Tertiary)) or Library.CurrentTheme.Tertiary}
 				end
 			end)
 
-			button.InputBegan:Connect(function(input)
-        if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+			button.MouseButton1Click:connect(function()
 				promptContainer:tween({BackgroundTransparency = 1, Length = 0.1})
 				promptTitle:tween({TextTransparency = 1, Length = 0.1})
 				_promptContainerStroke:tween({Transparency = 1, Length = 0.1})
@@ -3477,7 +3375,7 @@ function Library:slider(options)
 		end)
 
 		UserInputService.InputEnded:connect(function(key)
-			if key.UserInputType == Enum.UserInputType.Touch then
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
 				down = false
 				sliderContainer:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Secondary)) or Library.CurrentTheme.Secondary}
 			end
