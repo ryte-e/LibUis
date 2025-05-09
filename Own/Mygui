@@ -1,0 +1,158 @@
+-- Custom UI Library Template with Orion-like Features and Theme Changer local TweenService = game:GetService("TweenService") local UserInputService = game:GetService("UserInputService") local Players = game:GetService("Players") local LocalPlayer = Players.LocalPlayer
+
+local CustomLib = {} local ScreenGui = Instance.new("ScreenGui") ScreenGui.Name = "TrollUILib" ScreenGui.ResetOnSpawn = false ScreenGui.Parent = game.CoreGui
+
+local Background = Instance.new("Frame") Background.Name = "MainBackground" Background.Size = UDim2.new(0, 600, 0, 400) Background.Position = UDim2.new(0.5, -300, 0.5, -200) Background.BackgroundColor3 = Color3.fromRGB(25, 25, 25) Background.BorderSizePixel = 0 Background.Parent = ScreenGui
+
+local Tabs = {} -- Tab registry
+
+-- Create a Tab function CustomLib:CreateTab(tabName) local Tab = Instance.new("Frame") Tab.Name = tabName Tab.Size = UDim2.new(1, 0, 1, 0) Tab.BackgroundTransparency = 1 Tab.Visible = false Tab.Parent = Background
+
+Tabs[tabName] = Tab
+
+return {
+    AddButton = function(self, text, callback)
+        local Button = Instance.new("TextButton")
+        Button.Size = UDim2.new(0, 200, 0, 30)
+        Button.Position = UDim2.new(0, 10, 0, #Tab:GetChildren() * 35)
+        Button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        Button.Text = text
+        Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Button.Parent = Tab
+        Button.MouseButton1Click:Connect(callback)
+    end,
+
+    AddTextbox = function(self, text, callback)
+        local Box = Instance.new("TextBox")
+        Box.Size = UDim2.new(0, 200, 0, 30)
+        Box.Position = UDim2.new(0, 10, 0, #Tab:GetChildren() * 35)
+        Box.Text = text
+        Box.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        Box.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Box.PlaceholderText = "Enter text..."
+        Box.Parent = Tab
+        Box.FocusLost:Connect(function()
+            callback(Box.Text)
+        end)
+    end,
+
+    AddSlider = function(self, text, min, max, callback)
+        local Frame = Instance.new("Frame")
+        Frame.Size = UDim2.new(0, 200, 0, 40)
+        Frame.Position = UDim2.new(0, 10, 0, #Tab:GetChildren() * 45)
+        Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        Frame.Parent = Tab
+
+        local Label = Instance.new("TextLabel")
+        Label.Size = UDim2.new(1, 0, 0.5, 0)
+        Label.Text = text
+        Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Label.BackgroundTransparency = 1
+        Label.Parent = Frame
+
+        local Slider = Instance.new("TextButton")
+        Slider.Size = UDim2.new(0, 180, 0, 15)
+        Slider.Position = UDim2.new(0, 10, 1, -20)
+        Slider.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+        Slider.Text = ""
+        Slider.Parent = Frame
+
+        local Fill = Instance.new("Frame")
+        Fill.Size = UDim2.new(0, 0, 1, 0)
+        Fill.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+        Fill.Parent = Slider
+
+        local dragging = false
+        local function update(input)
+            local pos = math.clamp((input.Position.X - Slider.AbsolutePosition.X) / Slider.AbsoluteSize.X, 0, 1)
+            Fill.Size = UDim2.new(pos, 0, 1, 0)
+            local value = math.floor((max - min) * pos + min)
+            callback(value)
+        end
+
+        Slider.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = true
+            end
+        end)
+        Slider.InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = false
+            end
+        end)
+        UserInputService.InputChanged:Connect(function(input)
+            if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                update(input)
+            end
+        end)
+    end,
+
+    AddDropdown = function(self, text, options, callback)
+        local Dropdown = Instance.new("TextButton")
+        Dropdown.Size = UDim2.new(0, 200, 0, 30)
+        Dropdown.Position = UDim2.new(0, 10, 0, #Tab:GetChildren() * 35)
+        Dropdown.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        Dropdown.Text = text
+        Dropdown.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Dropdown.Parent = Tab
+
+        local Open = false
+        Dropdown.MouseButton1Click:Connect(function()
+            Open = not Open
+            for _, child in ipairs(Tab:GetChildren()) do
+                if child:IsA("TextButton") and child.Name == text .. "_Option" then
+                    child.Visible = Open
+                end
+            end
+        end)
+
+        for _, option in ipairs(options) do
+            local Opt = Instance.new("TextButton")
+            Opt.Size = UDim2.new(0, 200, 0, 30)
+            Opt.Position = Dropdown.Position + UDim2.new(0, 0, 0, 35 * #Tab:GetChildren())
+            Opt.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+            Opt.Text = option
+            Opt.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Opt.Name = text .. "_Option"
+            Opt.Visible = false
+            Opt.Parent = Tab
+
+            Opt.MouseButton1Click:Connect(function()
+                callback(option)
+                Dropdown.Text = text .. ": " .. option
+                Open = false
+                for _, child in ipairs(Tab:GetChildren()) do
+                    if child:IsA("TextButton") and child.Name == text .. "_Option" then
+                        child.Visible = false
+                    end
+                end
+            end)
+        end
+    end,
+
+    AddToggle = function(self, text, callback)
+        local Toggle = Instance.new("TextButton")
+        Toggle.Size = UDim2.new(0, 200, 0, 30)
+        Toggle.Position = UDim2.new(0, 10, 0, #Tab:GetChildren() * 35)
+        Toggle.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+        Toggle.Text = text .. ": OFF"
+        Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Toggle.Parent = Tab
+
+        local state = false
+        Toggle.MouseButton1Click:Connect(function()
+            state = not state
+            Toggle.Text = text .. (state and ": ON" or ": OFF")
+            callback(state)
+        end)
+    end
+}
+
+end
+
+-- Theme changer tab local SettingsTab = CustomLib:CreateTab("Settings") SettingsTab:AddTextbox("Background Asset ID", function(assetID) pcall(function() local id = tonumber(assetID) Background.BackgroundTransparency = 1 local img = Instance.new("ImageLabel") img.Size = UDim2.new(1, 0, 1, 0) img.Image = "rbxassetid://" .. id img.BackgroundTransparency = 1 img.ZIndex = -1 img.Parent = Background end) end)
+
+-- Make first tab visible Tabs["Settings"].Visible = true
+
+return CustomLib
+
